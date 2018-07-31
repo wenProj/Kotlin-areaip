@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.IPMapper" >
+    <resultMap id="ipMap" type="com.example.pojo.IP" >
+        <id column="id" property="id" />
+        <result column="area_origin" property="areaOrigin" />
+        <result column="area_country" property="areaCountry" />
+        <result column="area_province" property="areaProvince" />
+        <result column="area_city" property="areaCity" />
+        <result column="access_count" property="accessCount" />
+        <result column="last_access_ip" property="lastAccessIp" />
+        <result column="update_time" property="updateTime" />
+        <result column="log_date" property="logDate" />
+    </resultMap>
+ 
+    <sql id="ip_column" >
+        id,area_origin,area_country,area_province,area_city,access_count,last_access_ip,update_time,log_date
+    </sql>
+ 
+    <select id="selectOne" resultMap="ipMap" >
+        SELECT
+        <include refid="ip_column" />
+        FROM area_ip
+        WHERE id = #{id}
+    </select>
+    
+    <select id="selectList" resultMap="ipMap" >
+        SELECT
+        <include refid="ip_column" />
+        FROM area_ip
+        WHERE 1 = 1 ORDER BY access_count DESC;
+    </select>
+    
+<!--     <insert id="saveUser" parameterType="com.debug.pojo.UserInfo"> -->
+<!--       insert into user(name,address) values(#{name},#{address}) -->
+<!--     </insert> -->
+    
+<!--     <update id="updateUser" parameterType="com.debug.pojo.UserInfo"> -->
+<!--       update user -->
+	
+<!-- 	  <trim prefix="SET" suffixOverrides=","> -->
+<!-- 	    <if test="name != null"> -->
+<!--                name = #{name} -->
+<!--        </if>  -->
+<!--        <if test="address != null"> -->
+<!--                address = #{address} -->
+<!--        </if>  -->
+<!-- 	   </trim> -->
+<!--        where id=#{id} -->
+<!--     </update> -->
+    
+<!--     <delete id="removeUserById" parameterType="com.debug.pojo.UserInfo"> -->
+<!--      delete from user where id=#{id} -->
+<!--     </delete> -->
+ 
+</mapper>
