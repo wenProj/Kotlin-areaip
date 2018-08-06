@@ -17,7 +17,6 @@ class IPController() {
 	@ResponseBody
     fun ipList(): Any {
         var map:Any = iPService.selectList()
-//		println("++++++++++++++++++++++++++++++"+map);
         return map
     }
 	
